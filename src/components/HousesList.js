@@ -1,7 +1,7 @@
 import React from 'react';
 import { House } from './House';
 import { housesApi } from '../rest/HousesApi';
-import { getNodeText } from '@testing-library/react';
+import { HouseForm } from './HouseForm';
 
 export class HousesList extends React.Component {
     state = {
@@ -30,15 +30,21 @@ export class HousesList extends React.Component {
     render() {
         return (
             <div>
-                {this.state.houses.map((house) => (
-                    <House
-                        house={house}
-                        key={house._id}
-                        updateHouse={this.updateHouse}
-                        deleteHouse={this.deleteHouse}
-                        />
-                ))}
+                <div>
+                    < HouseForm fetchHouses={this.fetchHouses} />
+                </div>
+                <div>
+                    {this.state.houses.map((house) => (
+                        < House
+                            house={house}
+                            key={house._id}
+                            updateHouse={this.updateHouse}
+                            deleteHouse={this.deleteHouse}
+                            />
+                    ))}
+                </div>   
             </div>
+
         )
     }
 }

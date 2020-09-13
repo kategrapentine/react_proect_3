@@ -6,16 +6,18 @@ export class HouseForm extends React.Component {
         name: ''
     };
 
+
     createHouse = async (house) => {
         await housesApi.post(house);
-        this.setState({name: ''});
     };
     
     onSubmit = (e) => {
         e.preventDefault();
         console.log(this.state.name);
         this.createHouse(this.state.name);
-        
+        this.props.fetchHouses();
+        this.setState({name: ''});
+        this.props.fetchHouses();
     };
 
     render() {
